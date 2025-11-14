@@ -18,8 +18,8 @@ assertOldStyleParse input = do
 main :: IO ()
 main = do
   counts <-
-    runTestTT
-      $ test
+    runTestTT $
+      test
         [ "Parse Plan" ~: do
             (rest, result) <-
               assertOldStyleParse
@@ -28,14 +28,14 @@ main = do
               "result matches"
               ( PlanBuilds
                   ( singleton
-                      ( Derivation
-                          $ StorePath
+                      ( Derivation $
+                          StorePath
                             "7n05q79qhrgvnfmvv2v3cnj3yqf4d1hf"
                             "haskell-language-server-0.4.0.0"
                       )
                   )
-                  ( Derivation
-                      $ StorePath
+                  ( Derivation $
+                      StorePath
                         "7n05q79qhrgvnfmvv2v3cnj3yqf4d1hf"
                         "haskell-language-server-0.4.0.0"
                   )
@@ -59,7 +59,7 @@ main = do
               "result matches"
               ( Downloading
                   (StorePath "yk1164s4bkj6p3s4mzxm5fc4qn38cnmf" "ghc-8.8.2-doc")
-                  (Host "https://cache.nixos.org")
+                  (Host "https" "cache.nixos.org")
               )
               result
             assertEqual "no rest" "" rest
@@ -83,7 +83,7 @@ main = do
               "result matches"
               ( Build
                   (Derivation $ StorePath "63jjdifv1x1nymjxdwla603xy1sggakk" "hoogle-local-0.1")
-                  (Host "ssh://maralorn@example.com")
+                  (Host "ssh" "maralorn@example.com")
               )
               result
             assertEqual "no rest" "" rest
